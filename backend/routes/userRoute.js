@@ -14,3 +14,4 @@ userRouter.post('/update-profile',upload.single('image'),authUser,updateProfile)
 export default userRouter
 
 
+

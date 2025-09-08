@@ -32,23 +32,42 @@ const AppContextProvider = (props) => {
     }
   };
 
+  // const loadUserProfileData = async () => {
+  //   try {
+  //     const res = await fetch(`${backendUrl}/api/users/profile`, {
+  //       method: "GET",
+  //       headers: {
+  //         "Content-Type": "application/json",
+  //         Authorization: `Bearer ${token}`,
+  //       },
+  //     });
+  //     const data = await res.json();
+  //     if (data.success) {
+  //       setUserData(data.data);
+  //     }
+  //   } catch (error) {
+  //     console.error("Failed to load profile:", error);
+  //   }
+  // };
   const loadUserProfileData = async () => {
-    try {
-      const res = await fetch(`${backendUrl}/api/user/profile`, {
-        method: "GET",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${token}`,
-        },
-      });
-      const data = await res.json();
-      if (data.success) {
-        setUserData(data.data);
-      }
-    } catch (error) {
-      console.error("Failed to load profile:", error);
+  try {
+    const res = await fetch(`${backendUrl}/api/users/get-profile`, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+    });
+
+    const data = await res.json();
+    if (data.success) {
+      setUserData(data.data); // ✅ correct key
     }
-  };
+  } catch (error) {
+    console.error("Failed to load profile:", error);
+  }
+};
+
 
   const value = {
     doctors,
